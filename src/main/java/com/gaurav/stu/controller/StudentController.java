@@ -3,8 +3,10 @@ package com.gaurav.stu.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,6 +78,26 @@ public class StudentController {
 	public List<Student> findStudentByCollege(@RequestParam String college) {
 		
 		return stuService.getStuByCollege(college);
+	}
+	
+	
+	
+	// update --- put
+	
+	
+	@PutMapping("/gaurav/stu/update")
+	public String updateStudent(@RequestBody Student stu) {
+		
+		return stuService.updateStudent(stu);
+		
+	}
+	
+	/// delete
+	@DeleteMapping("/gaurav/stu/delete")
+	public String updateStudent(@RequestParam int rollNo) {
+		
+		return stuService.deleteStu(rollNo);
+		
 	}
 
 }

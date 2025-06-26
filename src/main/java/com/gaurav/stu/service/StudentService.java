@@ -48,4 +48,33 @@ public class StudentService {
 		return stuRepo.findByCollege(college);
 	}
 
+	public String  updateStudent(Student stu) {
+		
+		try {
+			Student dbStudent = stuRepo.findById(stu.getRollNo()).get();
+			if(dbStudent.getRollNo() == stu.getRollNo()) {
+				stuRepo.save(stu);
+			}
+			return "successfully updated stu---."+stu.getRollNo();
+		}catch(Exception e) {
+			return "Student Not found with rollNo--->"+stu.getRollNo();
+		}
+		
+		
+		
+	}
+
+	public String deleteStu(int rollNo) {
+		
+		try {
+			Student dbStudent = stuRepo.findById(rollNo).get();
+			if(dbStudent.getRollNo() == rollNo) {
+				stuRepo.deleteById(rollNo);
+			}
+			return "successfully deleted stu---."+rollNo;
+		}catch(Exception e) {
+			return "Student Not found with rollNo--->"+rollNo;
+		}
+	}
+
 }
